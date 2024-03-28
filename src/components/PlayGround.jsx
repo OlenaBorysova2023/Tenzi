@@ -3,7 +3,6 @@ import Confetti from "react-confetti"
 
 export default function PlayGround() {
     const size = 10
-    const maxValue = 6
 
     const [gameData, setGameData] = React.useState(initTiles)
 
@@ -22,7 +21,7 @@ export default function PlayGround() {
 
         for (let i = 0; i < size; i++) {
             tilesInitValue[i] = {
-                value: Math.round(Math.random() * maxValue),
+                value: randomValue(),
                 key: i,
                 isSelected: false
             }
@@ -43,7 +42,7 @@ export default function PlayGround() {
                     tile : 
                     {
                         ...tile,
-                        value: Math.round(Math.random() * maxValue)
+                        value: randomValue()
                     }
             )
 
@@ -56,6 +55,10 @@ export default function PlayGround() {
 
     function getIsGameOver(newTiles) {
         return newTiles.every(tile => tile.value === newTiles[0].value)    
+    }
+
+    function randomValue() {
+        return Math.round(Math.random() * 5) + 1
     }
 
     function toggleTile(key) {
